@@ -1,15 +1,15 @@
 import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
-    private static final int MAX_STUDENTS = 10;
     private static final int REGISTER = 1;
     private static final int SHOW_STUDENTS = 2;
     private static final int EXIT_PROGRAM = 3;
-    static Student[] student = new Student[MAX_STUDENTS];
     static int countStudent;
+    static int size_array = 1;
+    static Student[] student = new Student[size_array];
     public static void main(String[] args) {
-        boolean continueProgram = true;
 
+        boolean continueProgram = true;
         do{
             switch (chooseOption()) {
                 case REGISTER -> registerStudent();
@@ -26,38 +26,36 @@ public class Main {
     }
     private static int chooseOption(){
         int option;
-        System.out.println("Options ");
+        System.out.println("Options");
         System.out.println("1) Register new student");
         System.out.println("2) Show students");
         System.out.println("3) Exit");
         option = sc.nextInt();
         return option;
     }
-    private static void registerStudent(){
-        if(countStudent < MAX_STUDENTS){
-            String name;
-            int age;
-            long telephone;
-            float average;
-            char gender;
-            sc.nextLine();
-            System.out.println("Registering student");
-            System.out.print("Name: ");
-            name = sc.nextLine();
-            System.out.print("Age: ");
-            age = sc.nextInt();
-            System.out.print("Telephone: ");
-            telephone = sc.nextLong();
-            System.out.print("Average: ");
-            average = sc.nextFloat();
-            System.out.print("Gender: ");
-            gender = sc.next().charAt(0);
-            student[countStudent] = new Student(name,age,telephone,average,gender);
-            countStudent++;
-            System.out.println("Student registered");
-        }else{
-            System.out.println("System full");
-        }
+    private static void registerStudent() {
+        size_array++;
+        String name;
+        int age;
+        long telephone;
+        float average;
+        char gender;
+        sc.nextLine();
+        System.out.println("Registering student");
+        System.out.print("Name: ");
+        name = sc.nextLine();
+        System.out.print("Age: ");
+        age = sc.nextInt();
+        System.out.print("Telephone: ");
+        telephone = sc.nextLong();
+        System.out.print("Average: ");
+        average = sc.nextFloat();
+        System.out.print("Gender: ");
+        gender = sc.next().charAt(0);
+        student[countStudent] = new Student(name, age, telephone, average, gender);
+        countStudent++;
+        System.out.println("Student registered");
+        pause();
     }
     private static void showRegister() {
         if(countStudent > 0){
@@ -69,8 +67,15 @@ public class Main {
                 System.out.println("Average: " + student[i].getAverage());
                 System.out.println("Gender: " + student[i].getGender());
             }
+            pause();
         }else{
             System.out.println("No students previously registered");
         }
+    }
+    private static void pause(){
+        String enter;
+        enter = sc.nextLine();
+        System.out.println("Press enter to continue...");
+        enter = sc.nextLine();
     }
 }

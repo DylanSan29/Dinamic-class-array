@@ -7,7 +7,6 @@ public class Student {
     private long telephone = 0;
     private float average = 0;
     private char gender = '0';
-
     //The Builder, needs the parameter to register for the student
     public Student(String name, int age, long telephone, float average, char gender){
         //Validate the variable structure.
